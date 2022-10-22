@@ -28,6 +28,18 @@ public class GameState {
 		
 	}
 	
+	public void setCurrentTurn(int turnNumber) {
+		
+		this.currentTurn = turnNumber;
+		
+	}
+	
+	public void playerWon() {
+		
+		this.winner = true;
+		
+	}
+	
 	public boolean progressGame() {
 		
 		this.currentTurn++;
