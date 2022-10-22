@@ -32,6 +32,13 @@ public class GUIController {
     		
     		this.statusBar.setText("Turn Player: "+this.gameState.getTurnPlayer().toString());
     		
+    	} else {
+    		
+    		String turnPlayer = this.gameState.getTurnPlayer().toString();
+    		String endGameStatus = (this.gameState.winner()) ? "Player "+turnPlayer+" Wins!!!!" : "Game Over";
+    		
+    		this.statusBar.setText(endGameStatus);
+    		
     	}
     	
     }
