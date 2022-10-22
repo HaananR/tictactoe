@@ -20,7 +20,7 @@ public class GUIController {
     	if (button.getText().equals(" ")) {
     		
     		button.setText(this.gameState.getTurnPlayer().toString());
-    		
+    		this.updateGameState();
     		
     	}
     	
@@ -28,7 +28,11 @@ public class GUIController {
     
     private void updateGameState() {
     	
-    	System.out.println("THE GAME STATE WILL NOW BE UPDATED");
+    	if (this.gameState.progressGame()) {
+    		
+    		this.statusBar.setText("Turn Player: "+this.gameState.getTurnPlayer().toString());
+    		
+    	}
     	
     }
 }

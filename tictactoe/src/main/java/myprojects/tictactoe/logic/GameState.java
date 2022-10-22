@@ -22,4 +22,32 @@ public class GameState {
 		
 	}
 	
+	public boolean winner() {
+		
+		return this.winner;
+		
+	}
+	
+	public boolean progressGame() {
+		
+		this.currentTurn++;
+		
+		if (this.currentTurn > this.MAX_TURNS || this.winner) {
+			
+			return false;
+			
+		}
+		
+		this.changeTurnPlayer();
+		
+		return true;
+		
+	}
+	
+	private void changeTurnPlayer() {
+		
+		this.turnPlayer = (this.turnPlayer.equals(Player.X)) ? Player.O : Player.X; 
+		
+	}
+	
 }

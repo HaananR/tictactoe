@@ -16,7 +16,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="myprojects.tictactoe.interfaces.GUIController">
    <top>
-      <Label text="Turn Player: X" BorderPane.alignment="CENTER">
+      <Label fx:id="statusBar" text="Turn Player: X" BorderPane.alignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>
