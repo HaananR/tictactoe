@@ -1,0 +1,16 @@
+/*
+ * JavaFX uses its own CSS rules. The names of the properties are very similar to those used for web development with the main key difference
+ * being that each property for JavaFX CSS is prefaced with "-fx-". 
+ * To learn more about JavaFX CSS, check out this reference guide: https://docs.oracle.com/javase/8/javafx/api/javafx/scene/doc-files/cssref.html
+ * To get a list of all of the CSS colors available by name, look here: https://www.w3schools.com/cssref/css_colors.asp
+ * To get a basic understanding of CSS, take a look at this website: https://www.w3schools.com/css/
+ */
+
+.root{
+	-fx-background: linear-gradient(from 25% 25% to 100% 100%, purple, navy);
+}
+
+.button{
+	-fx-background-color: "DarkMagenta";
+	-fx-text-fill: "Black";
+}
