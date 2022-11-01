@@ -3,24 +3,29 @@ package myprojects.tictactoe;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.FixMethodOrder;
+import org.junit.runners.MethodSorters;
 import org.junit.Test;
 
 import myprojects.tictactoe.logic.GameState;
 
-/**
- * Unit test for simple App.
- */
-public class GameStateTest 
-{
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+
+public class GameStateTest {
 	
 	GameState gameState = new GameState();
+	String[][] blankGameBoard = { {" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "} };
+	String[][] winningGameBoard = { {"X", " ", " "}, {" ", "X", " "}, {" ", " ", "X"} };
 
 	@Test
     public void winnerIsFalseAndCurrentTurnLessThanMaxTurns() {
-    	
+		
     	this.gameState.setCurrentTurn(5);
+    	this.gameState.updateGameBoard(this.blankGameBoard);
     	
-        assertTrue( this.gameState.progressGame() );
+    	String errorMessage = "Expected progessGame() to return true, but returned false.";
+    	
+        assertTrue( errorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -28,8 +33,11 @@ public class GameStateTest
     public void winnerIsFalseAndCurrentTurnEqualsMaxTurns() {
     	
     	this.gameState.setCurrentTurn(8);
+    	this.gameState.updateGameBoard(this.blankGameBoard);
     	
-        assertTrue( this.gameState.progressGame() );
+    	String errorMessage = "Expected progessGame() to return true, but returned false.";
+    	
+        assertTrue( errorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -37,8 +45,11 @@ public class GameStateTest
     public void winnerIsFalseAndCurrentTurnGreaterThanMaxTurns() {
     	
     	this.gameState.setCurrentTurn(10);
+    	this.gameState.updateGameBoard(this.blankGameBoard);
     	
-        assertFalse( this.gameState.progressGame() );
+    	String errorMessage = "Expected progessGame() to return false, but returned true.";
+    	
+        assertFalse( errorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -46,9 +57,11 @@ public class GameStateTest
     public void winnerIsTrueAndCurrentTurnLessThanMaxTurns() {
     	
     	this.gameState.setCurrentTurn(5);
-    	this.gameState.playerWon();
+    	this.gameState.updateGameBoard(this.winningGameBoard);
     	
-        assertFalse( this.gameState.progressGame() );
+    	String errorMessage = "Expected progessGame() to return false, but returned true.";
+    	
+        assertFalse( errorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -56,9 +69,11 @@ public class GameStateTest
     public void winnerIsTrueAndCurrentTurnEqualsMaxTurns() {
     	
     	this.gameState.setCurrentTurn(8);
-    	this.gameState.playerWon();
+    	this.gameState.updateGameBoard(this.winningGameBoard);
     	
-        assertFalse( this.gameState.progressGame() );
+    	String errorMessage = "Expected progessGame() to return false, but returned true.";
+    	
+        assertFalse( errorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -66,9 +81,37 @@ public class GameStateTest
     public void winnerIsTrueAndCurrentTurnGreaterThanMaxTurns() {
     	
     	this.gameState.setCurrentTurn(10);
-    	this.gameState.playerWon();
+    	this.gameState.updateGameBoard(this.winningGameBoard);
     	
-        assertFalse( this.gameState.progressGame() );
+    	String errorMessage = "Expected progessGame() to return false, but returned true.";
+    	
+        assertFalse( errorMessage, this.gameState.progressGame() );
         
     }
+	
+	@Test
+	public void leftToRightDiagonalMatch() {
+		
+		this.gameState.setCurrentTurn(1);
+		this.gameState.updateGameBoard(this.winningGameBoard);
+		
+		String errorMessage = "Expected progessGame() to return false, but returned true.";
+    	
+        assertFalse( errorMessage, this.gameState.progressGame() );
+		
+	}
+	
+	@Test
+	public void rightToLeftDiagonalMatch() {
+		
+		String[][] rtlDiagoanlBoard = { {" ", " ", "X"}, {" ", "X", " "}, {"X", " ", " "} };
+		
+		this.gameState.setCurrentTurn(1);
+		this.gameState.updateGameBoard(rtlDiagoanlBoard);
+		
+		String errorMessage = "Expected progessGame() to return false, but returned true.";
+    	
+        assertFalse( errorMessage, this.gameState.progressGame() );
+		
+	}
 }

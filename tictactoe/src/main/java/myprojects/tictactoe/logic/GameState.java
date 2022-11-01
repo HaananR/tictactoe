@@ -6,6 +6,7 @@ public class GameState {
 	private boolean winner;
 	private final int MAX_TURNS;
 	private int currentTurn;
+	private MatchCheckerManager mcManager;
 	
 	public GameState() {
 		
@@ -13,6 +14,7 @@ public class GameState {
 		this.winner = false;
 		this.MAX_TURNS = 9;
 		this.currentTurn = 1;
+		this.mcManager = new MatchCheckerManager();
 		
 	}
 	
@@ -34,9 +36,9 @@ public class GameState {
 		
 	}
 	
-	public void playerWon() {
+	public void setWinner(boolean winnerStatus) {
 		
-		this.winner = true;
+		this.winner = winnerStatus;
 		
 	}
 	
@@ -44,7 +46,7 @@ public class GameState {
 		
 		this.currentTurn++;
 		
-		if (this.currentTurn > this.MAX_TURNS || this.winner) {
+		if (this.playerWon() || this.currentTurn > this.MAX_TURNS) {
 			
 			return false;
 			
@@ -59,6 +61,20 @@ public class GameState {
 	private void changeTurnPlayer() {
 		
 		this.turnPlayer = (this.turnPlayer.equals(Player.X)) ? Player.O : Player.X; 
+		
+	}
+	
+	public void updateGameBoard(String[][] gameBoard) {
+		
+		this.mcManager.setGameBoard(gameBoard);
+		
+	}
+	
+	private boolean playerWon() {
+		
+		this.winner = this.mcManager.matchFound();
+		
+		return this.winner;
 		
 	}
 	

@@ -1,23 +1,27 @@
 package myprojects.tictactoe.interfaces;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import myprojects.tictactoe.logic.GameState;
 
 public class GUIController {
 	
-	private GameState gameState = new GameState();
-	
 	@FXML private Label statusBar;
+	@FXML private GridPane gameBoard;
+	
+	private GameState gameState = new GameState();
 	
     @FXML
     private void checkCurrentCell(ActionEvent event)  {
 
     	Button button = (Button) event.getTarget();
     	
-    	if (button.getText().equals(" ")) {
+    	if (button.getText().equals(" ") && !this.gameState.winner()) {
     		
     		button.setText(this.gameState.getTurnPlayer().toString());
     		this.updateGameState();
@@ -27,6 +31,8 @@ public class GUIController {
     }
     
     private void updateGameState() {
+    	
+    	this.gameState.updateGameBoard(this.getGameBoard());
     	
     	if (this.gameState.progressGame()) {
     		
@@ -42,4 +48,30 @@ public class GUIController {
     	}
     	
     }
+    
+    private String[][] getGameBoard() {
+    	
+    	int maxRows = 3; int maxColumns = maxRows;
+    	
+    	ObservableList<Node> gridPaneNodes = this.gameBoard.getChildren();
+    	String[][] gameBoard = new String[maxRows][maxColumns];
+    	
+    	int node = 0;
+    	
+    	for (int row = 0; row < maxRows; row++) {
+			
+			for (int column = 0; column < maxColumns; column++) {
+				
+				gameBoard[row][column] = ( (Button) gridPaneNodes.get(node) ).getText();
+				
+				node++;
+				
+			}
+			
+		}
+    	    	    	
+    	return gameBoard;
+    	
+    }
+    
 }
