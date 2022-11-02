@@ -3,13 +3,13 @@ package myprojects.tictactoe;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;
 import org.junit.Test;
 
 import myprojects.tictactoe.logic.GameState;
-
-@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+import myprojects.tictactoe.logic.MatchChecker;
 
 public class GameStateTest {
 	
@@ -17,6 +17,13 @@ public class GameStateTest {
 	String[][] blankGameBoard = { {" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "} };
 	String[][] winningGameBoard = { {"X", " ", " "}, {" ", "X", " "}, {" ", " ", "X"} };
 
+	@Before
+	public void resetMatchChecker() {
+		
+		MatchChecker.resetMatchChecker();
+		
+	}
+	
 	@Test
     public void winnerIsFalseAndCurrentTurnLessThanMaxTurns() {
 		

@@ -58,6 +58,14 @@ public class GameState {
 		
 	}
 	
+	public GameState resetGame() {
+		
+		MatchChecker.resetMatchChecker();
+		
+		return new GameState();
+		
+	}
+	
 	private void changeTurnPlayer() {
 		
 		this.turnPlayer = (this.turnPlayer.equals(Player.X)) ? Player.O : Player.X; 
@@ -77,5 +85,6 @@ public class GameState {
 		return this.winner;
 		
 	}
+	
 	
 }

@@ -30,6 +30,28 @@ public class GUIController {
     	
     }
     
+    @FXML
+    private void restartGame() {
+    	
+    	this.resetGameBoard();
+    	this.gameState = this.gameState.resetGame();
+    	
+    	this.statusBar.setText("Turn Player: "+this.gameState.getTurnPlayer().toString());
+    	
+    }
+    
+    private void resetGameBoard() {
+    	
+    	ObservableList<Node> gridPaneNodes = this.gameBoard.getChildren();
+    	
+    	for (Node gridCell : gridPaneNodes) {
+    		
+    		((Button) gridCell).setText(" ");
+    		
+    	}
+    	
+    }
+    
     private void updateGameState() {
     	
     	this.gameState.updateGameBoard(this.getGameBoard());

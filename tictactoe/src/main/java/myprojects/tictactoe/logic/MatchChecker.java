@@ -46,6 +46,12 @@ public class MatchChecker implements Runnable {
 		
 	}	
 	
+	public static void resetMatchChecker() {
+		
+		matchFound = false;
+		
+	}
+	
 	private boolean isTicTacToe(int row, int column, int rowIncrement, int columnIncrement, int lastRowIndex, int lastColumnIndex) {
 						
 		for (; row != lastRowIndex || column != lastColumnIndex; row += rowIncrement, column += columnIncrement) {

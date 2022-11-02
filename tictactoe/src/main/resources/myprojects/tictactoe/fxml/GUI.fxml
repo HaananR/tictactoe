@@ -26,7 +26,7 @@
       </Label>
    </top>
    <bottom>
-      <Button mnemonicParsing="false" text="Restart" BorderPane.alignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#restartGame" text="Restart" BorderPane.alignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
