@@ -4,8 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
-import org.junit.FixMethodOrder;
-import org.junit.runners.MethodSorters;
 import org.junit.Test;
 
 import myprojects.tictactoe.logic.GameState;
@@ -140,6 +138,42 @@ public class GameStateTest {
 		
 		this.gameState.setCurrentTurn(1);
 		this.gameState.updateGameBoard(row3Board);
+		    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
+		
+	}
+	
+	@Test
+	public void verticalMatchColumn1() {
+		
+		String[][] column1Board = { {"X", " ", " "}, {"X", " ", " "}, {"X", " ", " "} };
+		
+		this.gameState.setCurrentTurn(1);
+		this.gameState.updateGameBoard(column1Board);
+		    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
+		
+	}
+	
+	@Test
+	public void verticalMatchColumn2() {
+		
+		String[][] column2Board = { {" ", "X", " "}, {" ", "X", " "}, {" ", "X", " "} };
+		
+		this.gameState.setCurrentTurn(1);
+		this.gameState.updateGameBoard(column2Board);
+		    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
+		
+	}
+	
+	@Test
+	public void verticalMatchColumn3() {
+		
+		String[][] column3Board = { {" ", " ", "X"}, {" ", " ", "X"}, {" ", " ", "X"} };
+		
+		this.gameState.setCurrentTurn(1);
+		this.gameState.updateGameBoard(column3Board);
 		    	
         assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
 		

@@ -108,6 +108,18 @@ public class MatchChecker implements Runnable {
 	
 	private void verticalCheck() {
 		
+		int row = 0, column = 0, rowIncrement = 1, columnIncrement = 0, lastRowIndex = 2, lastColumnIndex = 0;
+		
+		for (; !matchFound && column < gameBoard.length; column += 1, lastColumnIndex += 1) {
+
+			if (this.isTicTacToe(row, column, rowIncrement, columnIncrement, lastRowIndex, lastColumnIndex)) {
+				
+				matchFound = true;
+				
+			}
+									
+		}
+		
 	}
 	
 

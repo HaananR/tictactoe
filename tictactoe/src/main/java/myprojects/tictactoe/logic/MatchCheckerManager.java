@@ -11,7 +11,7 @@ public class MatchCheckerManager {
 		this.matchCheckers = new ArrayList<>();
 		this.matchCheckers.add(new MatchChecker(Direction.DIAGONAL));
 		this.matchCheckers.add(new MatchChecker(Direction.HORIZONTAL));
-	//	this.matchCheckers.add(new MatchChecker(Direction.VERTICAL));
+		this.matchCheckers.add(new MatchChecker(Direction.VERTICAL));
 		
 	}
 	
