@@ -16,6 +16,9 @@ public class GameStateTest {
 	GameState gameState = new GameState();
 	String[][] blankGameBoard = { {" ", " ", " "}, {" ", " ", " "}, {" ", " ", " "} };
 	String[][] winningGameBoard = { {"X", " ", " "}, {" ", "X", " "}, {" ", " ", "X"} };
+	
+	String expectedTrueErrorMessage = "Expected progessGame() to return true, but returned false.";
+	String expectedFalseErrorMessage = "Expected progessGame() to return false, but returned true.";
 
 	@Before
 	public void resetMatchChecker() {
@@ -29,10 +32,8 @@ public class GameStateTest {
 		
     	this.gameState.setCurrentTurn(5);
     	this.gameState.updateGameBoard(this.blankGameBoard);
-    	
-    	String errorMessage = "Expected progessGame() to return true, but returned false.";
-    	
-        assertTrue( errorMessage, this.gameState.progressGame() );
+    	    	
+        assertTrue( this.expectedTrueErrorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -41,10 +42,8 @@ public class GameStateTest {
     	
     	this.gameState.setCurrentTurn(8);
     	this.gameState.updateGameBoard(this.blankGameBoard);
-    	
-    	String errorMessage = "Expected progessGame() to return true, but returned false.";
-    	
-        assertTrue( errorMessage, this.gameState.progressGame() );
+    	    	
+        assertTrue( this.expectedTrueErrorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -53,10 +52,8 @@ public class GameStateTest {
     	
     	this.gameState.setCurrentTurn(10);
     	this.gameState.updateGameBoard(this.blankGameBoard);
-    	
-    	String errorMessage = "Expected progessGame() to return false, but returned true.";
-    	
-        assertFalse( errorMessage, this.gameState.progressGame() );
+    	    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -65,10 +62,8 @@ public class GameStateTest {
     	
     	this.gameState.setCurrentTurn(5);
     	this.gameState.updateGameBoard(this.winningGameBoard);
-    	
-    	String errorMessage = "Expected progessGame() to return false, but returned true.";
-    	
-        assertFalse( errorMessage, this.gameState.progressGame() );
+    	    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -77,10 +72,8 @@ public class GameStateTest {
     	
     	this.gameState.setCurrentTurn(8);
     	this.gameState.updateGameBoard(this.winningGameBoard);
-    	
-    	String errorMessage = "Expected progessGame() to return false, but returned true.";
-    	
-        assertFalse( errorMessage, this.gameState.progressGame() );
+    	    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -89,10 +82,8 @@ public class GameStateTest {
     	
     	this.gameState.setCurrentTurn(10);
     	this.gameState.updateGameBoard(this.winningGameBoard);
-    	
-    	String errorMessage = "Expected progessGame() to return false, but returned true.";
-    	
-        assertFalse( errorMessage, this.gameState.progressGame() );
+    	    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
         
     }
 	
@@ -101,10 +92,8 @@ public class GameStateTest {
 		
 		this.gameState.setCurrentTurn(1);
 		this.gameState.updateGameBoard(this.winningGameBoard);
-		
-		String errorMessage = "Expected progessGame() to return false, but returned true.";
-    	
-        assertFalse( errorMessage, this.gameState.progressGame() );
+		    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
 		
 	}
 	
@@ -115,10 +104,45 @@ public class GameStateTest {
 		
 		this.gameState.setCurrentTurn(1);
 		this.gameState.updateGameBoard(rtlDiagoanlBoard);
-		
-		String errorMessage = "Expected progessGame() to return false, but returned true.";
-    	
-        assertFalse( errorMessage, this.gameState.progressGame() );
+		    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
 		
 	}
+	
+	@Test
+	public void horizontalMatchRow1() {
+		
+		String[][] row1Board = { {"X", "X", "X"}, {" ", " ", " "}, {" ", " ", " "} };
+		
+		this.gameState.setCurrentTurn(1);
+		this.gameState.updateGameBoard(row1Board);
+		    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
+		
+	}
+	
+	@Test
+	public void horizontalMatchRow2() {
+		
+		String[][] row2Board = { {" ", " ", " "}, {"X", "X", "X"},  {" ", " ", " "} };
+		
+		this.gameState.setCurrentTurn(1);
+		this.gameState.updateGameBoard(row2Board);
+		    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
+		
+	}
+	
+	@Test
+	public void horizontalMatchRow3() {
+		
+		String[][] row3Board = { {" ", " ", " "}, {" ", " ", " "}, {"X", "X", "X"} };
+		
+		this.gameState.setCurrentTurn(1);
+		this.gameState.updateGameBoard(row3Board);
+		    	
+        assertFalse( this.expectedFalseErrorMessage, this.gameState.progressGame() );
+		
+	}
+	
 }

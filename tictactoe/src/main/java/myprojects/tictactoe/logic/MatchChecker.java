@@ -56,8 +56,8 @@ public class MatchChecker implements Runnable {
 						
 		for (; row != lastRowIndex || column != lastColumnIndex; row += rowIncrement, column += columnIncrement) {
 			
-			String cell1 = this.gameBoard[row][column];
-			String cell2 = this.gameBoard[row+rowIncrement][column+columnIncrement];
+			String cell1 = gameBoard[row][column];
+			String cell2 = gameBoard[row+rowIncrement][column+columnIncrement];
 			
 			if ( !cell1.equals(cell2) || ( cell1.equals(" ") || cell2.equals(" ")) ) {
 				
@@ -91,6 +91,18 @@ public class MatchChecker implements Runnable {
 	}
 	
 	private void horizontalCheck() {
+		
+		int row = 0, column = 0, rowIncrement = 0, columnIncrement = 1, lastRowIndex = 0, lastColumnIndex = 2;
+		
+		for (; !matchFound && row < gameBoard.length; row += 1, lastRowIndex += 1) {
+
+			if (this.isTicTacToe(row, column, rowIncrement, columnIncrement, lastRowIndex, lastColumnIndex)) {
+				
+				matchFound = true;
+				
+			}
+									
+		}
 		
 	}
 	
